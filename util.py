@@ -22,11 +22,26 @@ def get_daily_stock_data(symbol, start=None, stop=None):
         "apikey": config.ALPHAVANTAGE_API_KEY,
     }
     res = requests.get(url, params=params)
-    result_df = build_dataframe(res.json, start, stop)
+    print(res.json())
+    result_df = build_dataframe(res.json(), start, stop)
 
 
 def build_dataframe(jsonResponse, start, stop):
-    df = pd.DataFrame()
+    days = pd.date_range(start, stop)
+    df = pd.DataFrame({"days": days,
+                       "open": None,
+                       "high": None,
+                       "low": None,
+                       "close": None,
+                       "volume": None})
+    dataDict = jsonResponse["Time Series (Daily)"]
+    for dtp in dataDict:
+        dtime = pd.to_datetime(dtp, format="%Y-%m-%d")
+
+        for key, value in dataDict[dtp].items():
+            df.loc[dtime.date(), key.split()[-1]] = float(value)
+    df = df.set_index("days")
+    print(df)
 
 
 
