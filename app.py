@@ -13,6 +13,7 @@ def index():
 
 @app.route("/chart")
 def chart():
+    pass
 
 
 

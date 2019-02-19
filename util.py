@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import requests
+from datetime import datetime, timedelta
 import config
 import json
 from flask import jsonify
@@ -27,26 +28,37 @@ def get_daily_stock_data(symbol, start=None, stop=None):
 
 
 def build_dataframe(jsonResponse, start, stop):
+    """
+    build a dataframe of high/open/low/close
+    :param jsonResponse:
+    :param start:
+    :param stop:
+    :return:
+    """
     days = pd.date_range(start, stop)
+
     df = pd.DataFrame({"days": days,
                        "open": None,
                        "high": None,
                        "low": None,
                        "close": None,
                        "volume": None})
+    df = df.set_index("days")
+    print(df)
     dataDict = jsonResponse["Time Series (Daily)"]
     for dtp in dataDict:
         dtime = pd.to_datetime(dtp, format="%Y-%m-%d")
+        if dtime in df.index:
+            for key, value in dataDict[dtp].items():
+                df.loc[dtime.date(), key.split()[-1]] = float(value)
 
-        for key, value in dataDict[dtp].items():
-            df.loc[dtime.date(), key.split()[-1]] = float(value)
-    df = df.set_index("days")
     print(df)
+
 
 
 
 if __name__ == "__main__":
     start = pd.to_datetime("2018-01-01", format="%Y-%m-%d")
-    stop = pd.to_datetime("2019-01-01", format="%Y-%m-%d")
+    stop = pd.to_datetime("2019-02-18", format="%Y-%m-%d")
     get_daily_stock_data("MSFT", start=start, stop=stop)
 
