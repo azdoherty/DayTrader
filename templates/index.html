@@ -1,15 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Econ Calendar</title>
-</head>
-<body>
-
+{% extends 'base.html' %}
+{% block content %}
 <h1>Welcome to Day Trader </h1>
 <p> For all your economic forcasting needs </p>
 <p>    Today is {{ date }} </p>
 <p><a href={{ url_for('chart') }}>chart</a> </p>
 
-</body>
-</html>
+{% endblock %}
