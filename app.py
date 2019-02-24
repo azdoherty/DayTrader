@@ -1,6 +1,6 @@
 from flask import Flask, render_template
 import datetime
-
+import util
 
 app = Flask(__name__)
 
@@ -13,7 +13,7 @@ def index():
 
 @app.route("/chart")
 def chart():
-    pass
+    return render_template("chart.html")
 
 
 

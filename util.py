@@ -30,9 +30,9 @@ def get_daily_stock_data(symbol, start=None, stop=None):
 def build_dataframe(jsonResponse, start, stop):
     """
     build a dataframe of high/open/low/close
-    :param jsonResponse:
-    :param start:
-    :param stop:
+    :param jsonResponse: the reponse object from an alphavantage request
+    :param start: date to start sequence, datetime object in Y-m-d format
+    :param stop: date, date to end sequence
     :return:
     """
     days = pd.date_range(start, stop)
@@ -58,7 +58,7 @@ def build_dataframe(jsonResponse, start, stop):
 
 
 if __name__ == "__main__":
-    start = pd.to_datetime("2018-01-01", format="%Y-%m-%d")
+    start = pd.to_datetime("2018-01-02", format="%Y-%m-%d")
     stop = pd.to_datetime("2019-02-18", format="%Y-%m-%d")
     get_daily_stock_data("MSFT", start=start, stop=stop)
 
