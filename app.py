@@ -1,7 +1,7 @@
 from flask import Flask, render_template
 import datetime
 import util
-
+import pandas as pd
 app = Flask(__name__)
 
 
@@ -13,7 +13,11 @@ def index():
 
 @app.route("/chart")
 def chart():
-    return render_template("chart.html")
+    start = pd.to_datetime("2018-01-02", format="%Y-%m-%d")
+    stop = pd.to_datetime("2019-02-18", format="%Y-%m-%d")
+    data = util.Asset("MSFT", start=start, stop=stop)
+    figname = data.plot_image()
+    return render_template("chart.html", figname=figname)
 
 
 
