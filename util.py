@@ -47,6 +47,7 @@ def build_dataframe(jsonResponse, start, stop):
                        "close": None,
                        "volume": None})
     df = df.set_index("days")
+    print(jsonResponse)
     dataDict = jsonResponse["Time Series (Daily)"]
     for dtp in dataDict:
         dtime = pd.to_datetime(dtp, format="%Y-%m-%d")

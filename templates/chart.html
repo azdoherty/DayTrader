@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+  <meta charset="utf-8" />
+  <title>Chart.js Example</title>
+  <!-- import plugin script -->
+  <script src='static/js/Chart.js'></script>
 </head>
-<body>
-<p> Placeholder for Chart </p>
+{% block content %}
     <div><img src="{{ figname }}" ></img></div>
-
-</body>
-</html>
+{% endblock %}
