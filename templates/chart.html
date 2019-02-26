@@ -3,8 +3,11 @@
   <meta charset="utf-8" />
   <title>Chart.js Example</title>
   <!-- import plugin script -->
-  <script src='static/js/Chart.js'></script>
+    <script src='static/js/lib/Chart.js'></script>
+    <script src='static/js/chart_setup.js'></script>
 </head>
 {% block content %}
-    <div><img src="{{ figname }}" ></img></div>
+    <canvas id="myChart" width="600" height="400"></canvas>
+    <p id="caption"> Share Prince for {{ symbol }}</p>
+
 {% endblock %}

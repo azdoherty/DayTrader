@@ -17,7 +17,7 @@ def chart():
     stop = pd.to_datetime("2019-02-18", format="%Y-%m-%d")
     data = util.Asset("MSFT", start=start, stop=stop)
     figname = data.plot_image()
-    return render_template("chart.html", figname=figname)
+    return render_template("chart.html", symbol="MSFT")
 
 
 
