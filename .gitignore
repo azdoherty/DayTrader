@@ -1,5 +1,5 @@
 /.idea
 *.db
-
+*.pyc
 config.py
 *.png
