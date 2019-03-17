@@ -13,6 +13,9 @@
       // define the chart data
       var chartData = {
         datasets : [{
+            labels : [{% for item in labels %}
+              "{{item}}",
+              {% endfor %}],
             label: '{{ legend }}',
             fill: true,
             lineTension: 0.1,

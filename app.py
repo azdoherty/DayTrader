@@ -17,7 +17,7 @@ def chart():
     stop = pd.to_datetime("2019-02-18", format="%Y-%m-%d")
     data = util.Asset("MSFT", start=start, stop=stop)
     print(data.asset_data['close'].values.max())
-    return render_template("chart.html", symbol="MSFT", values=data.asset_data['close'].values)
+    return render_template("chart.html", symbol="MSFT", values=data.asset_data['close'].values, labels=data.asset_data.index.tolist())
 
 
 
