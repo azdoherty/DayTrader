@@ -81,6 +81,10 @@ class Asset:
         print(f"URL: {url}")
         return url
 
+    @property
+    def formatted_index(self):
+        return self.asset_data.index.strftime("%Y-%m-%d")
+
 if __name__ == "__main__":
     start = pd.to_datetime("2018-01-02", format="%Y-%m-%d")
     stop = pd.to_datetime("2019-02-18", format="%Y-%m-%d")
