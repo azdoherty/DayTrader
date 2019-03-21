@@ -16,8 +16,14 @@ def chart():
     start = pd.to_datetime("2018-01-02", format="%Y-%m-%d")
     stop = pd.to_datetime("2019-02-18", format="%Y-%m-%d")
     data = util.Asset("MSFT", start=start, stop=stop)
-    print(data.asset_data['close'].values.max())
-    return render_template("chart.html", symbol="MSFT", values=data.asset_data['close'].values)
+    labels = data.asset_data.index.values
+    values = data.asset_data['close'].values
+    #labels = ["January", "February", "March", "April", "May", "June", "July", "August"]
+    #values = [10, 9, 8, 7, 6, 4, 7, 8]
+    return render_template("chart.html",
+                           symbol="MSFT",
+                           values=values,
+                           labels=labels)
 
 
 
