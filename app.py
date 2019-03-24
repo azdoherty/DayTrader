@@ -61,14 +61,11 @@ def get_asset_data(symbol):
         r = {"symbol": symbol,
              "data": data.asset_data['close'].values.tolist(),
              "labels":  data.formatted_index.tolist()}
-
         return jsonify(r), 200
+
     except Exception as e:
         errors.append(str(e))
         return jsonify(errors), 400
-
-
-
 
 
 if __name__ == '__main__':
