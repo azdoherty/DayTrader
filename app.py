@@ -1,8 +1,24 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 import datetime
 import util
 import pandas as pd
 app = Flask(__name__)
+
+
+class InvalidUsage(Exception):
+    status_code = 400
+
+    def __init__(self, message, status_code=None, payload=None):
+        Exception.__init__(self)
+        self.message = message
+        if status_code is not None:
+            self.status_code = status_code
+        self.payload = payload
+
+    def to_dict(self):
+        rv = dict(self.payload or ())
+        rv['message'] = self.message
+        return rv
 
 
 @app.route("/")
@@ -24,6 +40,33 @@ def chart():
                            symbol="MSFT",
                            values=values,
                            labels=labels)
+
+
+@app.route("/symbol/<string:symbol>", methods=["POST"])
+def get_asset_data(symbol):
+    errors = []
+    try:
+        args = request.args
+        if "start" in args:
+            start = pd.to_datetime(args['start'], format="%Y-%m-%d")
+        else:
+            raise InvalidUsage("Start date not defined")
+        if "stop" in args:
+            stop = pd.to_datetime(args["stop"], format="%Y-%m-%d")
+        else:
+            raise InvalidUsage("Stop date not defined")
+        data = util.Asset("MSFT", start=start, stop=stop)
+
+        # dictionary to return as json
+        r = {"symbol": symbol,
+             "data": data.asset_data['close'].values.tolist(),
+             "labels":  data.formatted_index.tolist()}
+
+        return jsonify(r), 200
+    except Exception as e:
+        errors.append(str(e))
+        return jsonify(errors), 400
+
 
 
 
