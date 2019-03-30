@@ -6,8 +6,10 @@
 </head>
 
 {% block javascript %}
-  <script src="{{ url_for('static',filename='charting.js') }}"></script>
-
+    <script type="text/javascript">
+        {% include "static/js/charting.js" %}
+    </script>
+    <!-- The contents of myscript.js will be loaded inside the script tag -->
 {% endblock %}
 
 {% block content %}
@@ -66,7 +68,7 @@
             <label for="symbol">Lookup Symbol:</label>
             <input type="text" class="form-control" id="symbol">
           </div>
-          <button type="submit" class="btn btn-primary" id="plot-button">Plot</button>
+          <button id="plot-button" class="btn btn-primary" >Plot</button>
         </div>
       </div>
   </div>
