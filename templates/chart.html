@@ -7,10 +7,8 @@
 
 {% block content %}
 {% block javascript %}
-<script src="{{ url_for('static',filename='js/charting.js') }}"></script>
+  <script src="{{ url_for('static',filename='js/charting.js') }}"></script>
 {% endblock %}
-
-
 <div class="container">
   <div class="row">
       <div class="col-sm-6">
@@ -63,8 +61,8 @@
           <div class="form-group">
             <label for="symbol">Lookup Symbol:</label>
             <input type="text" class="form-control" id="symbol">
+            <button id="plot_button" class="btn">Plot</button>
           </div>
-          <button id="plot-button" class="btn btn-primary" >Plot</button>
         </div>
       </div>
   </div>

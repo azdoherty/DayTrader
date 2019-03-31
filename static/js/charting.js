@@ -1,7 +1,7 @@
 
 var base_url = window.location.href;
 
-$('#plot-button').click(function(e){
-    console.log("yeaaah boii");
+$('#plot_button').click(function(e){
+    e.preventDefault();
+    console.log("Thing clicked");
 });
-
