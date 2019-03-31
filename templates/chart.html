@@ -5,14 +5,12 @@
   <!-- import plugin script -->
 </head>
 
+{% block content %}
 {% block javascript %}
-    <script type="text/javascript">
-        {% include "static/js/charting.js" %}
-    </script>
-    <!-- The contents of myscript.js will be loaded inside the script tag -->
+<script src="{{ url_for('static',filename='js/charting.js') }}"></script>
 {% endblock %}
 
-{% block content %}
+
 <div class="container">
   <div class="row">
       <div class="col-sm-6">
