@@ -55,7 +55,7 @@ def get_asset_data(symbol):
             stop = pd.to_datetime(args["stop"], format="%Y-%m-%d")
         else:
             raise InvalidUsage("Stop date not defined")
-        data = util.Asset("MSFT", start=start, stop=stop)
+        data = util.Asset(symbol , start=start, stop=stop)
         # dictionary to return as json
         r = {"symbol": symbol,
              "data": data.asset_data['close'].values.tolist(),
