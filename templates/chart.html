@@ -53,12 +53,15 @@
             data: chartData,
           });
           </script>
-        <p id="caption"> Share Prince for {{ symbol }}</p>
+        <form class="form-inline">
         <div class="container">
           <div class="form-group">
-            <label for="symbol">Lookup Symbol:</label>
-            <input type="text" class="form-control" id="symbol">
-            <button type="button" id="pltbtn" class="btn">Plot</button>
+              <span><label for="symbol">Lookup Symbol:</label>
+              <input type="text" class="form-control" id="symbol" name="symbol">
+              <button type="button" id="pltbtn" class="btn">Plot</button>
+              </span>
+            </div>
+          </form>
           </div>
         </div>
       </div>
