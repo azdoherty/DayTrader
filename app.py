@@ -42,7 +42,7 @@ def chart():
                            labels=labels)
 
 
-@app.route("/symbol/<string:symbol>", methods=["POST"])
+@app.route("/symbol/<string:symbol>", methods=["GET"])
 def get_asset_data(symbol):
     errors = []
     try:
@@ -63,9 +63,9 @@ def get_asset_data(symbol):
         return jsonify(r), 200
 
     except Exception as e:
-        errors.append(str(e))
-        return jsonify(errors), 400
+        errors.append(e.message)
+        return jsonify(errors), 500
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
