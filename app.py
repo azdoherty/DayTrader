@@ -27,6 +27,17 @@ def index():
     return render_template("index.html",
                            date=date)
 
+
+@app.route("/login", methods = ["GET", "POST"])
+def login():
+    if request.method == "POST":
+        args = request.args
+        username = request.args.get("username")
+        password = request.args.get("password")
+    else:
+        return render_template("login.html")
+
+
 @app.route("/chart")
 def chart():
     start = pd.to_datetime("2018-01-02", format="%Y-%m-%d")
@@ -68,4 +79,4 @@ def get_asset_data(symbol):
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)
