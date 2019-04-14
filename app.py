@@ -21,6 +21,12 @@ class InvalidUsage(Exception):
         return rv
 
 
+class CurrentUser:
+    def __init__(self, username, password):
+        self.username = username
+        self.password = password
+
+
 @app.route("/")
 def index():
     date = '{0:%Y-%m-%d %H:%M:%S}' .format(datetime.datetime.now())

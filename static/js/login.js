@@ -5,16 +5,21 @@ function validateLogin() {
       alert("Please enter " + f);
       return false;
     }
+    return true;
   }
 }
 
-var validated = false;
-
 $('#submit-btn').click(function(e){
-  if(!validated){
-    e.preventDefault()
-    validated = validateLogin();
+  e.preventDefault()
+  var validated = validateLogin();
+  if(validated){
+    var data = $('#login').serialize()
+    var url = window.location.href
+    console.log(data)
+    $.get(url, function(data, status){
+      console.log(status)     
+  });
+
   }
-  //$(this).trigger('click');
   
 })
