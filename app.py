@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify
+from flask import Flask, render_template, request, jsonify, redirect, url_for
 import datetime
 import util
 import pandas as pd
@@ -40,9 +40,15 @@ def login():
         args = request.args
         username = request.args.get("username")
         password = request.args.get("password")
+
+        redirect(url_for('success'))
     else:
         return render_template("login.html")
 
+
+@app.route('/success')
+def success():
+   return 'logged in successfully'
 
 @app.route("/chart")
 def chart():

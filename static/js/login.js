@@ -16,7 +16,7 @@ $('#submit-btn').click(function(e){
     var data = $('#login').serialize()
     var url = window.location.href
     console.log(data)
-    $.get(url, function(data, status){
+    $.post(url, function(data, status){
       console.log(status)     
   });
 
