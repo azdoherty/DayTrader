@@ -4,3 +4,5 @@
 config.py
 *.png
 /env
+/venv
+*.csv
