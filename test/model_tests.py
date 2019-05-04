@@ -1,6 +1,6 @@
 import unittest
 
-from Models import events
+from models import events
 
 class test_table(unittest.TestCase):
 
