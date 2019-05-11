@@ -9,3 +9,5 @@ def get_connection_string():
     db = db_connection['dbname']
     conn_string = f'postgresql+psycopg2://{user}@{host}:{port}/{db}'
     return conn_string
+
+engine = create_engine(get_connection_string())
