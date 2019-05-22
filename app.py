@@ -36,7 +36,6 @@ def index():
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
-    m = request.method
     if request.method == "POST":
         args = request.args
         x = request
@@ -48,6 +47,14 @@ def login():
             return url_for('success')
     else:
         return render_template("login.html")
+
+@app.route("/register", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        pass
+    else:
+        return render_template('register.html')
+
 
 
 @app.route('/success')
