@@ -9,17 +9,36 @@ function validateLogin() {
   }
 }
 
+
 $('#submit-btn').click(function(e){
   e.preventDefault()
   var validated = validateLogin();
   if(validated){
-    var data = $('#login').serialize()
+    var data = $('#login').serializeArray()
     var url = window.location.href
-    console.log(data)
-    $.post(url, function(data, status){
-      console.log(status)     
-  });
+    console.log(data);
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: data,
+      success: function(data, textStatus){
+        console.log(data) 
+        window.location = data;
+      },
+    }); 
+  
 
   }
-  
 })
+
+/*
+$('#login').submit(function(){ //listen for submit event
+  $.each(params, function(i,param){
+      $('<input />').attr('type', 'hidden')
+          .attr('name', param.name)
+          .attr('value', param.value)
+          .appendTo('#commentForm');
+  });
+  return true;
+}); 
+*/

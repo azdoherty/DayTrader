@@ -34,21 +34,26 @@ def index():
                            date=date)
 
 
-@app.route("/login", methods = ["GET", "POST"])
+@app.route("/login", methods=["GET", "POST"])
 def login():
+    m = request.method
     if request.method == "POST":
         args = request.args
-        username = request.args.get("username")
+        x = request
+        username = request.args.get("email")
         password = request.args.get("password")
-
-        redirect(url_for('success'))
+        print(args, username, password)
+        validated = True
+        if validated:
+            return url_for('success')
     else:
         return render_template("login.html")
 
 
 @app.route('/success')
 def success():
-   return 'logged in successfully'
+    return render_template('index.html')
+
 
 @app.route("/chart")
 def chart():
